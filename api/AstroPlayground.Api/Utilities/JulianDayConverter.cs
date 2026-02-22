@@ -1,0 +1,43 @@
+using SwissEphNet;
+
+namespace AstroPlayground.Api.Utilities;
+
+/// <summary>Converts date/time values to Julian Day Number (UT), as required by the Swiss Ephemeris.</summary>
+public static class JulianDayConverter
+{
+    /// <summary>
+    /// Converts a local birth date/time to Julian Day UT.
+    /// </summary>
+    /// <param name="date">Date of birth (local).</param>
+    /// <param name="time">Time of birth (local).</param>
+    /// <param name="utcOffsetHours">UTC offset of the birth location in decimal hours.</param>
+    public static double ToJulianDayUt(DateOnly date, TimeOnly time, double utcOffsetHours)
+    {
+        double localHour = time.Hour + time.Minute / 60.0 + time.Second / 3600.0;
+        double utHour = localHour - utcOffsetHours;
+
+        int year = date.Year;
+        int month = date.Month;
+        int day = date.Day;
+
+        if (utHour < 0)
+        {
+            utHour += 24;
+            var previous = date.AddDays(-1);
+            year = previous.Year;
+            month = previous.Month;
+            day = previous.Day;
+        }
+        else if (utHour >= 24)
+        {
+            utHour -= 24;
+            var next = date.AddDays(1);
+            year = next.Year;
+            month = next.Month;
+            day = next.Day;
+        }
+
+        using var swe = new SwissEph();
+        return swe.swe_julday(year, month, day, utHour, SwissEph.SE_GREG_CAL);
+    }
+}
