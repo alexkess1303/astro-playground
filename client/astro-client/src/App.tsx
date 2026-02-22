@@ -17,6 +17,10 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  //console.log('Fetching natal chart with request:', birthRequest)
+  //console.log('Fetched natal chart:', chart)
+
+
   useEffect(() => {
     fetchNatalChart(birthRequest)
       .then(setChart)

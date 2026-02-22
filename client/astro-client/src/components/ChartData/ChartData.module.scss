@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 12px 16px;
   gap: 0;
-  font-size: 13px;
+  font-size: 16px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -18,7 +18,7 @@
 
 .headerLine {
   color: #111;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 // ── Section title ────────────────────────────────────────
@@ -27,10 +27,10 @@
   border: 1px solid #aac;
   color: #00b;
   font-weight: bold;
-  font-size: 13px;
-  padding: 3px 8px;
-  margin-bottom: 2px;
-  margin-top: 4px;
+  font-size: 18px;
+  padding: 4px 10px;
+  margin-bottom: 4px;
+  margin-top: 8px;
 }
 
 // ── Planets table ────────────────────────────────────────
@@ -49,13 +49,15 @@
 .planetName {
   font-weight: normal;
   color: #111;
-  width: 80px;
+  width: 120px;
+  font-size: 16px;
 }
 
 .planetPos {
   font-family: 'Courier New', Courier, monospace;
   color: #111;
   letter-spacing: 0.02em;
+  font-size: 16px;
 }
 
 .retroRow {
@@ -83,16 +85,18 @@
 
 .statLabel {
   color: #111;
-  width: 80px;
+  width: 120px;
+  font-size: 15px;
 }
 
 .statCount {
   font-weight: bold;
-  width: 30px;
+  width: 40px;
   color: #111;
+  font-size: 15px;
 }
 
 .statNote {
   color: #0000bb;
-  font-size: 11px;
+  font-size: 12px;
 }

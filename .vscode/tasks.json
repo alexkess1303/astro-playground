@@ -1,0 +1,25 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Launch .NET server",
+			"type": "shell",
+			"command": "dotnet run --project server/AstroPlayground.Server/AstroPlayground.Server.csproj",
+			"isBackground": true,
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Launch React client",
+			"type": "shell",
+			"command": "npm run dev --prefix client/astro-client",
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		}
+	]
+}

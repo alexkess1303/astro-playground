@@ -1,13 +1,17 @@
 .wrapper {
-  width: 100%;
-  max-width: 580px;
+  width: 100vw;
+  min-width: 800px;
+  min-height: 800px;
+  overflow: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 40px auto 40px auto;
 }
 
 .svg {
-  width: 100%;
-  height: auto;
+  width: 800px;
+  height: 800px;
   display: block;
+  margin: 0 auto;
 }

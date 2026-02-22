@@ -12,15 +12,15 @@ interface ChartProps {
   chart: NatalChart;
 }
 
-// SVG geometry constants
+// SVG geometry constants (zoomed in)
 const CX = 300;
 const CY = 300;
-const R_OUTER = 270;   // outer edge of zodiac ring
-const R_ZODIAC = 240;  // inner edge of zodiac ring / outer edge of house ring
-const R_HOUSE = 210;   // inner edge of house ring
-const R_PLANET = 185;  // planet glyph radius
-const R_ASPECT = 160;  // aspect lines radius
-const R_CENTER = 60;   // inner circle
+const R_OUTER = 340;   // outer edge of zodiac ring (was 270)
+const R_ZODIAC = 300;  // inner edge of zodiac ring / outer edge of house ring (was 240)
+const R_HOUSE = 260;   // inner edge of house ring (was 210)
+const R_PLANET = 230;  // planet glyph radius (was 185)
+const R_ASPECT = 200;  // aspect lines radius (was 160)
+const R_CENTER = 80;   // inner circle (was 60)
 
 /** Convert ecliptic degrees to SVG angle.
  *  0° Aries is at the 9 o'clock position (left), clockwise → counter-clockwise in SVG.
@@ -91,7 +91,7 @@ export default function Chart({ chart }: ChartProps) {
   return (
     <div className={styles.wrapper}>
       <svg
-        viewBox="0 0 600 600"
+        viewBox="-40 -40 800 800"
         className={styles.svg}
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -122,7 +122,7 @@ export default function Chart({ chart }: ChartProps) {
                 y={glyphPos.y}
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize="14"
+                fontSize="18"
                 fill="#333"
               >
                 {ZODIAC_GLYPHS[sign]}
@@ -189,7 +189,7 @@ export default function Chart({ chart }: ChartProps) {
               y={pos.y}
               textAnchor="middle"
               dominantBaseline="central"
-              fontSize="10"
+              fontSize="20"
               fill="#555"
             >
               {house.houseNumber}
@@ -208,7 +208,7 @@ export default function Chart({ chart }: ChartProps) {
               y={pos.y}
               textAnchor="middle"
               dominantBaseline="central"
-              fontSize="7"
+              fontSize="14"
               fill="#666"
             >
               {house.degreeInSign}
@@ -248,7 +248,7 @@ export default function Chart({ chart }: ChartProps) {
                 y={pos.y}
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize="13"
+                fontSize="26"
                 fill="#222"
                 fontWeight="bold"
               >
@@ -256,9 +256,9 @@ export default function Chart({ chart }: ChartProps) {
               </text>
               {p.isRetrograde && (
                 <text
-                  x={pos.x + 8}
-                  y={pos.y - 7}
-                  fontSize="8"
+                  x={pos.x + 16}
+                  y={pos.y - 14}
+                  fontSize="16"
                   fill="#cc2222"
                 >
                   ℞
@@ -269,7 +269,7 @@ export default function Chart({ chart }: ChartProps) {
                 y={degPos.y}
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize="8"
+                fontSize="16"
                 fill="#555"
               >
                 {p.degreeInSign}°
@@ -291,8 +291,8 @@ export default function Chart({ chart }: ChartProps) {
                 x2={rightPt.x} y2={rightPt.y}
                 stroke="#cc2222" strokeWidth="1.2"
               />
-              <text x={labelPos.x} y={labelPos.y} fontSize="9" fill="#cc2222" textAnchor="middle">Asc</text>
-              <text x={dscPos.x}   y={dscPos.y}   fontSize="9" fill="#cc2222" textAnchor="middle">Dsc</text>
+              <text x={labelPos.x} y={labelPos.y} fontSize="18" fill="#cc2222" textAnchor="middle">Asc</text>
+              <text x={dscPos.x}   y={dscPos.y}   fontSize="18" fill="#cc2222" textAnchor="middle">Dsc</text>
             </g>
           );
         })()}
@@ -310,8 +310,8 @@ export default function Chart({ chart }: ChartProps) {
                 x2={icPt.x} y2={icPt.y}
                 stroke="#226622" strokeWidth="1.2"
               />
-              <text x={mcLbl.x} y={mcLbl.y} fontSize="9" fill="#226622" textAnchor="middle">MC</text>
-              <text x={icLbl.x} y={icLbl.y} fontSize="9" fill="#226622" textAnchor="middle">IC</text>
+              <text x={mcLbl.x} y={mcLbl.y} fontSize="18" fill="#226622" textAnchor="middle">MC</text>
+              <text x={icLbl.x} y={icLbl.y} fontSize="18" fill="#226622" textAnchor="middle">IC</text>
             </g>
           );
         })()}
