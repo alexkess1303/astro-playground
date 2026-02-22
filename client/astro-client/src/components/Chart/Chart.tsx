@@ -24,15 +24,17 @@ const R_CENTER = 80;   // inner circle
 
 /** Convert ecliptic degrees to SVG angle.
  *  0° Aries is at the 9 o'clock position (left), clockwise → counter-clockwise in SVG.
- *  ASC is on the left. We rotate so that the Ascendant degree falls at 180° SVG angle (left = 9 o'clock).
+ *  ASC is always on the left (9 o'clock). We rotate so that the Ascendant degree falls at 180° SVG angle (left = 9 o'clock), regardless of sign or degree.
  *  SVG 0° is at 3 o'clock; we offset so that 0 ecliptic = 3 o'clock when ASC=0.
  *  ascDegree shifts the wheel: ascendant lands at SVG 180°.
  */
 function eclipticToSvgAngle(ecl: number, ascDegree: number): number {
-  // Rotate so ASC is on the left (180°)
-  const rotated = ecl - ascDegree + 180;
-  // Invert because SVG Y grows downward (ecliptic is counter-clockwise but SVG arc is CW)
-  return (360 - rotated) % 360;
+  // Rotate so ASC is on the left (270° SVG, 9 o'clock)
+  // SVG 0° is at 3 o'clock, so 270° is at 9 o'clock
+  // Place ascDegree at 270°
+  // Invert direction for counter-clockwise zodiac (astrological standard)
+  const rotated = ascDegree - ecl + 270;
+  return (rotated + 360) % 360;
 }
 
 function polarToXY(angleDeg: number, r: number) {

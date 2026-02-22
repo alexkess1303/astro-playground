@@ -144,7 +144,10 @@ const ASPECT_DEFS: { type: AspectType; angle: number; orb: number }[] = [
 export function getAspects(planets: PlanetPosition[]): Aspect[] {
   const aspects: Aspect[] = [];
   for (let i = 0; i < planets.length; i++) {
+    // Skip if planet is NorthNode
+    if (planets[i].planet === Planet.NorthNode) continue;
     for (let j = i + 1; j < planets.length; j++) {
+      if (planets[j].planet === Planet.NorthNode) continue;
       const diff = Math.abs(planets[i].absoluteDegree - planets[j].absoluteDegree);
       const angle = diff > 180 ? 360 - diff : diff;
       for (const def of ASPECT_DEFS) {
