@@ -1,15 +1,6 @@
 import type { NatalChart, PlanetPosition } from '../../app/api/types';
 import type { ChartRequest } from '../../app/api/types';
 import { PLANET_NAMES, ZODIAC_NAMES } from '../../app/utils/zodiacGlyphs';
-import { Planet, ZodiacSign } from '../../app/api/types';
-// Helper to map string to enum value
-function planetStringToEnum(str: string): Planet | undefined {
-  return (Object.entries(Planet).find(([k, v]) => v === str) ?? [])[1] as Planet | undefined;
-}
-
-function signStringToEnum(str: string): ZodiacSign | undefined {
-  return (Object.entries(ZodiacSign).find(([k, v]) => v === str) ?? [])[1] as ZodiacSign | undefined;
-}
 import {
   getElementCounts,
   getModalityCounts,
@@ -60,8 +51,6 @@ export default function ChartData({ chart, birthData }: ChartDataProps) {
   const modCounts = getModalityCounts(chart.planets, chart.ascendant, chart.midHeaven);
   const polCounts = getPolarityCounts(chart.planets);
 
-  console.log('chart.planets:', chart.planets);
-
   return (
     <div className={styles.panel}>
       {/* ── Birth info header ──────────────────────────── */}
@@ -79,19 +68,12 @@ export default function ChartData({ chart, birthData }: ChartDataProps) {
       <div className={styles.sectionTitle}>Natal Planets</div>
       <table className={styles.planetsTable}>
         <tbody>
-          {chart.planets.map((p) => {
-            // Convert string planet/sign to enum value for lookup
-            const planetEnum = typeof p.planet === 'string' ? Planet[p.planet as keyof typeof Planet] : p.planet;
-            const signEnum = typeof p.sign === 'string' ? ZodiacSign[p.sign as keyof typeof ZodiacSign] : p.sign;
-            return (
-              <tr key={p.planet} className={p.isRetrograde ? styles.retroRow : ''}>
-                <td className={styles.planetName}>
-                  {p.planet}
-                </td>
-                <td className={styles.planetPos}>{formatPosition({ ...p, sign: signEnum })}</td>
-              </tr>
-            );
-          })}
+          {chart.planets.map((p) => (
+            <tr key={p.planet} className={p.isRetrograde ? styles.retroRow : ''}>
+              <td className={styles.planetName}>{PLANET_NAMES[p.planet]}</td>
+              <td className={styles.planetPos}>{formatPosition(p)}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
 

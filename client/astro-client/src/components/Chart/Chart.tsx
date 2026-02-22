@@ -12,15 +12,15 @@ interface ChartProps {
   chart: NatalChart;
 }
 
-// SVG geometry constants (zoomed in)
-const CX = 300;
-const CY = 300;
-const R_OUTER = 340;   // outer edge of zodiac ring (was 270)
-const R_ZODIAC = 300;  // inner edge of zodiac ring / outer edge of house ring (was 240)
-const R_HOUSE = 260;   // inner edge of house ring (was 210)
-const R_PLANET = 230;  // planet glyph radius (was 185)
-const R_ASPECT = 200;  // aspect lines radius (was 160)
-const R_CENTER = 80;   // inner circle (was 60)
+// SVG geometry constants — CX/CY centred in 720×720 viewBox, R_OUTER fits with margin
+const CX = 360;
+const CY = 360;
+const R_OUTER = 340;   // outer edge of zodiac ring
+const R_ZODIAC = 300;  // inner edge of zodiac ring / outer edge of house ring
+const R_HOUSE = 260;   // inner edge of house ring
+const R_PLANET = 230;  // planet glyph radius
+const R_ASPECT = 200;  // aspect lines radius
+const R_CENTER = 80;   // inner circle
 
 /** Convert ecliptic degrees to SVG angle.
  *  0° Aries is at the 9 o'clock position (left), clockwise → counter-clockwise in SVG.
@@ -91,7 +91,7 @@ export default function Chart({ chart }: ChartProps) {
   return (
     <div className={styles.wrapper}>
       <svg
-        viewBox="-40 -40 800 800"
+        viewBox="0 0 720 720"
         className={styles.svg}
         xmlns="http://www.w3.org/2000/svg"
       >

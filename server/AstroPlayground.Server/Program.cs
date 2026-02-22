@@ -10,13 +10,18 @@ var builder = WebApplication.CreateBuilder(args);
 // ── Services ──────────────────────────────────────────────────────────────
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
+    {
         options.JsonSerializerOptions.Converters.Add(
-            new System.Text.Json.Serialization.JsonStringEnumConverter()));
+            new System.Text.Json.Serialization.JsonStringEnumConverter());
+        options.JsonSerializerOptions.NumberHandling =
+            System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals;
+    });
 
-// CORS - allow React dev server
+// CORS - allow any localhost port (covers Vite dev server on any port)
 builder.Services.AddCors(options =>
     options.AddDefaultPolicy(policy =>
-        policy.WithOrigins("http://localhost:5173", "http://localhost:3000")
+        policy.SetIsOriginAllowed(origin =>
+                  new Uri(origin).Host == "localhost")
               .AllowAnyHeader()
               .AllowAnyMethod()));
 

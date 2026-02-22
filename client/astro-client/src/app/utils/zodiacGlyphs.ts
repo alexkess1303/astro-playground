@@ -1,18 +1,18 @@
 import { Planet, ZodiacSign } from '../api/types';
 
 export const ZODIAC_GLYPHS: Record<ZodiacSign, string> = {
-  [ZodiacSign.Aries]: '♈',
-  [ZodiacSign.Taurus]: '♉',
-  [ZodiacSign.Gemini]: '♊',
-  [ZodiacSign.Cancer]: '♋',
-  [ZodiacSign.Leo]: '♌',
-  [ZodiacSign.Virgo]: '♍',
-  [ZodiacSign.Libra]: '♎',
-  [ZodiacSign.Scorpio]: '♏',
-  [ZodiacSign.Sagittarius]: '♐',
-  [ZodiacSign.Capricorn]: '♑',
-  [ZodiacSign.Aquarius]: '♒',
-  [ZodiacSign.Pisces]: '♓',
+  [ZodiacSign.Aries]:       '♈︎',
+  [ZodiacSign.Taurus]:      '♉︎',
+  [ZodiacSign.Gemini]:      '♊︎',
+  [ZodiacSign.Cancer]:      '♋︎',
+  [ZodiacSign.Leo]:         '♌︎',
+  [ZodiacSign.Virgo]:       '♍︎',
+  [ZodiacSign.Libra]:       '♎︎',
+  [ZodiacSign.Scorpio]:     '♏︎',
+  [ZodiacSign.Sagittarius]: '♐︎',
+  [ZodiacSign.Capricorn]:   '♑︎',
+  [ZodiacSign.Aquarius]:    '♒︎',
+  [ZodiacSign.Pisces]:      '♓︎',
 };
 
 export const ZODIAC_NAMES: Record<ZodiacSign, string> = {

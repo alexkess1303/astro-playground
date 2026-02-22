@@ -1,12 +1,11 @@
-using SwissEphNet;
-
 namespace AstroPlayground.Api.Utilities;
 
 /// <summary>Converts date/time values to Julian Day Number (UT), as required by the Swiss Ephemeris.</summary>
 public static class JulianDayConverter
 {
     /// <summary>
-    /// Converts a local birth date/time to Julian Day UT.
+    /// Converts a local birth date/time to Julian Day UT using a pure mathematical formula.
+    /// Avoids creating SwissEph instances that would corrupt global native-library state via swe_close().
     /// </summary>
     /// <param name="date">Date of birth (local).</param>
     /// <param name="time">Time of birth (local).</param>
@@ -37,7 +36,13 @@ public static class JulianDayConverter
             day = next.Day;
         }
 
-        using var swe = new SwissEph();
-        return swe.swe_julday(year, month, day, utHour, SwissEph.SE_GREG_CAL);
+        // Standard Gregorian → Julian Day Number (integer part)
+        int a = (14 - month) / 12;
+        int y = year + 4800 - a;
+        int m = month + 12 * a - 3;
+        int jdn = day + (153 * m + 2) / 5 + 365 * y + y / 4 - y / 100 + y / 400 - 32045;
+
+        // Julian Day = JDN + fractional day (noon = 0.0, so subtract 0.5 for midnight offset)
+        return jdn - 0.5 + utHour / 24.0;
     }
 }

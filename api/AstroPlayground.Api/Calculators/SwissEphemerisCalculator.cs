@@ -76,7 +76,14 @@ public sealed class SwissEphemerisCalculator : IPlanetCalculator, IHouseCalculat
         double longitude = xx[0];       // ecliptic longitude 0..360
         double speedInLong = xx[3];     // negative speed = retrograde
 
-        return DegreeToPlanetPosition(planet, longitude, speedInLong < 0);
+        // Guard against rare Infinity/NaN from Swiss Ephemeris
+        if (!double.IsFinite(longitude))
+            return null;
+
+        // The Sun and Moon never retrograde; guard against floating-point anomalies
+        bool isRetrograde = planet is not (Planet.Sun or Planet.Moon) && speedInLong < 0;
+
+        return DegreeToPlanetPosition(planet, longitude, isRetrograde);
     }
 
     private static PlanetPosition DegreeToPlanetPosition(Planet planet, double longitude, bool isRetrograde)
