@@ -10,6 +10,7 @@ export enum Planet {
   Neptune = 8,
   Pluto = 9,
   NorthNode = 10,
+  Chiron = 11,
 }
 
 export enum ZodiacSign {

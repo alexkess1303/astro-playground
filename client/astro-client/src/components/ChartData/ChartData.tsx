@@ -62,6 +62,8 @@ export default function ChartData({ chart, birthData }: ChartDataProps) {
           {birthData.utcOffsetHours >= 0 ? ` (+${birthData.utcOffsetHours}:00 GMT)` : ` (${birthData.utcOffsetHours}:00 GMT)`}
         </div>
         <div className={styles.headerLine}>{formatCoords(birthData.latitude, birthData.longitude)}</div>
+        <div className={styles.headerLine}>Transit date:</div>
+        <div className={styles.headerLine}>{formatDate(new Date().toISOString().slice(0, 10))}</div>
       </div>
 
       {/* ── Natal Planets ──────────────────────────────── */}

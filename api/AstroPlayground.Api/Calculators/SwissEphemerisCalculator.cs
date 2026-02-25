@@ -127,6 +127,7 @@ public sealed class SwissEphemerisCalculator : IPlanetCalculator, IHouseCalculat
         Planet.Neptune   => SwissEph.SE_NEPTUNE,
         Planet.Pluto     => SwissEph.SE_PLUTO,
         Planet.NorthNode => SwissEph.SE_MEAN_NODE,
+        Planet.Chiron    => SwissEph.SE_CHIRON,
         _ => throw new ArgumentOutOfRangeException(nameof(planet), planet, null)
     };
 

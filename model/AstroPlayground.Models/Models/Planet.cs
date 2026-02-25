@@ -12,5 +12,6 @@ public enum Planet
     Uranus = 7,
     Neptune = 8,
     Pluto = 9,
-    NorthNode = 10
+    NorthNode = 10,
+    Chiron = 11
 }

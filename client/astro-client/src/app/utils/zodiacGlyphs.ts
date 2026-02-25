@@ -42,6 +42,7 @@ export const PLANET_GLYPHS: Record<Planet, string> = {
   [Planet.Neptune]: '♆',
   [Planet.Pluto]: '♇',
   [Planet.NorthNode]: '☊',
+  [Planet.Chiron]: '⚷',
 };
 
 export const PLANET_NAMES: Record<Planet, string> = {
@@ -56,6 +57,7 @@ export const PLANET_NAMES: Record<Planet, string> = {
   [Planet.Neptune]: 'Neptune',
   [Planet.Pluto]: 'Pluto',
   [Planet.NorthNode]: 'Node',
+  [Planet.Chiron]: 'Chiron',
 };
 
 /** Colors used for zodiac sign segments on the wheel */
